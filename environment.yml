@@ -1,0 +1,12 @@
+name: First
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - requests
+  - selenium #4.10
+  - webdriver-manager
+  - pytest
+  - allure-pytest
+  - flake8
+  - pytest-playwright

@@ -1,0 +1,9 @@
+2026-04-23 15:51:43 [INFO] [root] Prepare chrome browser...
+2026-04-23 15:51:43 [DEBUG] [selenium.webdriver.remote.remote_connection] POST http://127.0.0.1:4444/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': 'normal', 'goog:chromeOptions': {'extensions': [], 'args': []}}}}
+2026-04-23 15:51:43 [DEBUG] [urllib3.connectionpool] Starting new HTTP connection (1): 127.0.0.1:4444
+2026-04-23 15:51:45 [DEBUG] [urllib3.util.retry] Incremented Retry for (url='/session'): Retry(total=2, connect=None, read=None, redirect=None, status=None)
+2026-04-23 15:51:45 [WARNING] [urllib3.connectionpool] Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='127.0.0.1', port=4444): Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение")': /session
+2026-04-23 15:51:45 [DEBUG] [urllib3.connectionpool] Starting new HTTP connection (2): 127.0.0.1:4444
+2026-04-23 15:51:47 [DEBUG] [urllib3.util.retry] Incremented Retry for (url='/session'): Retry(total=1, connect=None, read=None, redirect=None, status=None)
+2026-04-23 15:51:47 [WARNING] [urllib3.connectionpool] Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='127.0.0.1', port=4444): Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение")': /session
+2026-04-23 15:51:47 [DEBUG] [urllib3.connectionpool] Starting new HTTP connection (3): 127.0.0.1:4444

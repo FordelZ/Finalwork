@@ -1,0 +1,12 @@
+INFO     root:browser.py:12 Prepare chrome browser...
+DEBUG    selenium.webdriver.remote.remote_connection:remote_connection.py:406 POST http://127.0.0.1:4444/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': 'normal', 'goog:chromeOptions': {'extensions': [], 'args': []}}}}
+DEBUG    urllib3.connectionpool:connectionpool.py:241 Starting new HTTP connection (1): 127.0.0.1:4444
+DEBUG    urllib3.util.retry:retry.py:537 Incremented Retry for (url='/session'): Retry(total=2, connect=None, read=None, redirect=None, status=None)
+WARNING  urllib3.connectionpool:connectionpool.py:868 Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='127.0.0.1', port=4444): Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение")': /session
+DEBUG    urllib3.connectionpool:connectionpool.py:241 Starting new HTTP connection (2): 127.0.0.1:4444
+DEBUG    urllib3.util.retry:retry.py:537 Incremented Retry for (url='/session'): Retry(total=1, connect=None, read=None, redirect=None, status=None)
+WARNING  urllib3.connectionpool:connectionpool.py:868 Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='127.0.0.1', port=4444): Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение")': /session
+DEBUG    urllib3.connectionpool:connectionpool.py:241 Starting new HTTP connection (3): 127.0.0.1:4444
+DEBUG    urllib3.util.retry:retry.py:537 Incremented Retry for (url='/session'): Retry(total=0, connect=None, read=None, redirect=None, status=None)
+WARNING  urllib3.connectionpool:connectionpool.py:868 Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='127.0.0.1', port=4444): Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение")': /session
+DEBUG    urllib3.connectionpool:connectionpool.py:241 Starting new HTTP connection (4): 127.0.0.1:4444
