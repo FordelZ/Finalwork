@@ -1,7 +1,6 @@
 import allure
 import re
 from playwright.sync_api import expect
-
 from All_tests.tests.add_shopping_cart.fill_shopping_cart import fill_cart
 
 
@@ -50,4 +49,4 @@ def test_promo_code_dc120_not_applied(page):
             f"Числа не равны: {first_number} ≠ {second_number}"
         )
 
-    print("✓ Числа равны в пределах допустимой погрешности")
+    print(" Числа равны в пределах допустимой погрешности")

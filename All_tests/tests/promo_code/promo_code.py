@@ -1,10 +1,6 @@
 import re
-from idlelib.zzdummy import format_selection
-
 import allure
 from playwright.sync_api import expect
-from playwright.sync_api import sync_playwright
-
 from All_tests.tests.add_shopping_cart.fill_shopping_cart import fill_cart
 
 
@@ -73,7 +69,7 @@ def test_promo_code_discount_10percent(page):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        print(f"✓ Вычисленные 10%: {ten_percent_rounded}")
-        print(f"✓ Третье число: {discount_value}")
-        print("✓ Значения совпадают в пределах допустимой погрешности")
+        print(f" Вычисленные 10%: {ten_percent_rounded}")
+        print(f" Третье число: {discount_value}")
+        print(" Значения совпадают в пределах допустимой погрешности")
 
