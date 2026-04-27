@@ -10,7 +10,7 @@ def selenium(pytestconfig):
     options.page_load_strategy = 'normal'
     browser_name = pytestconfig.getoption("browser_name")
     logging.info(f"Prepare {browser_name} browser...")
-    if pytestconfig.getini("headless") == "True" and browser_name == "chrome":
+    if pytestconfig.getini("headless") == "False" and browser_name == "chrome":
         options.add_argument("headless")
 
     driver = webdriver.Remote(
