@@ -1,12 +1,14 @@
 import re
 import allure
 from playwright.sync_api import expect
-from All_tests.tests.add_shopping_cart.fill_shopping_cart import fill_cart
+from selenium.webdriver.common.devtools.v145.dom import scroll_into_view_if_needed
+
+from All_tests.tests.add_shopping_cart.fill_shopping_cart import test_fill_cart
 
 
 @allure.title("Сценарий №1: Применение промокода GIVEMEHALYAVA (скидка 10%)")
 def test_promo_code_discount_10percent(page):
-    fill_cart(page)
+    test_fill_cart(page)
     username_fixed = "fordel"
     password_fixed = "fordel"
     promo_code = "GIVEMEHALYAVA"
@@ -16,25 +18,28 @@ def test_promo_code_discount_10percent(page):
         make_order = page.locator("#menu-item-31").get_by_text("Оформление заказа")
         make_order.click()
 
-    with allure.step('Переходим в окно авторизации'):
+    with allure.step("Авторизуемся с данными пользователя"):
         authorization = page.locator('a.showlogin[href="#"]')
-        #authorization = page.locator('xpath=//a[@class="showlogin" and text()="Авторизуйтесь"]')
-        #authorization = page.get_by_role('link', name='Авторизуйтесь', exact=True)
-        #authorization = page.locator('.showlogin')
         authorization.click()
 
-    with allure.step("Авторизуемся с данными пользователя"):
         username = page.locator("#username")
-        username.send_keys(username_fixed)
+        username.fill(username_fixed)
+
         password = page.locator("#password")
-        password.send_keys(password_fixed)
+        password.fill(password_fixed)
+
+        enter_profile = page.locator('button[name="login"]')
+        enter_profile.click()
 
     with allure.step("Добавляем купон на скидку"):
         code_place = page.locator(".showcoupon")
         code_place.click()
+
         code_input = page.locator("#coupon_code")
-        code_input.send_keys(promo_code)
-        page.wait_for_timeout(2000)
+        code_input.fill(promo_code)
+
+        accept_code = page.locator('button[name="apply_coupon"]')
+        accept_code.click()
 
     with allure.step("Находим цену после скидки"):
         discount_locator = page.locator('bdi:has(span.woocommerce-Price-currencySymbol):nth-match(2)')
@@ -46,6 +51,7 @@ def test_promo_code_discount_10percent(page):
         ten_percent = total_price * 0.1
         ten_percent_rounded = round(ten_percent, 2)
 
+        
     with allure.step("Находим конечную сумму заказа"):
         price_locator = page.locator('bdi:has(span.woocommerce-Price-currencySymbol):nth-match(1)')
         expect(price_locator).to_be_visible(timeout=10000)

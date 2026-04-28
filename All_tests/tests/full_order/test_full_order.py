@@ -1,11 +1,12 @@
 import allure
 from playwright.sync_api import expect
-from All_tests.tests.add_shopping_cart.fill_shopping_cart import fill_cart
+
+from All_tests.tests.add_shopping_cart.fill_shopping_cart import test_fill_cart
 
 
 @allure.title("Сценарий №1: Применение промокода GIVEMEHALYAVA (скидка 10%)")
 def test_promo_code_discount_10percent(page):
-    fill_cart(page)
+    test_fill_cart(page)
     username_fixed = "fordel"
     password_fixed = "fordel"
     promo_code = "GIVEMEHALYAVA"
@@ -24,35 +25,44 @@ def test_promo_code_discount_10percent(page):
 
     with allure.step('Переходим в окно авторизации'):
         authorization = page.locator('a.showlogin[href="#"]')
-        #authorization = page.locator('xpath=//a[@class="showlogin" and text()="Авторизуйтесь"]')
-        #authorization = page.get_by_role('link', name='Авторизуйтесь', exact=True)
-        #authorization = page.locator('.showlogin')
         authorization.click()
 
     with allure.step("Авторизуемся с данными пользователя"):
         username = page.locator("#username")
-        username.send_keys(username_fixed)
+        username.fill(username_fixed)
+
         password = page.locator("#password")
-        password.send_keys(password_fixed)
+        password.fill(password_fixed)
+
+        enter_profile = page.locator('button[name="login"]')
+        enter_profile.click()
 
     with allure.step("Заполняем данные в деталях заказа"):
         order = page.locator('#billing_first_name')
-        order.send_keys(order_name)
+        order.fill(order_name)
+
         second_order = page.locator('#billing_last_name')
-        second_order.send_keys(second_order_name)
+        second_order.fill(second_order_name)
+
         address = page.locator('#billing_address_1')
-        address.send_keys(address_test)
+        address.fill(address_test)
+
         city = page.locator('#billing_city')
-        city.send_keys(city_test)
+        city.fill(city_test)
+
         area = page.locator('#billing_state')
-        area.send_keys(area_test)
+        area.fill(area_test)
+
         postal = page.locator('#billing_postcode')
-        postal.send_keys(postal_code_test)
+        postal.fill(postal_code_test)
+
         telephone = page.locator('#billing_phone')
-        telephone.send_keys(telephone_test)
+        telephone.fill(telephone_test)
+
         email = page.locator('#billing_email')
-        email.send_keys(email_test)
-        checkbox = page.locator('#terms').click()
+        email.fill(email_test)
+
+        checkbox = page.locator('#terms')
         checkbox.click()
 
     with allure.step("Выбираем страну 'Russia' в выпадающем списке"):
