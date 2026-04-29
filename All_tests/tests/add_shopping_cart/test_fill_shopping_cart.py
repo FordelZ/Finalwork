@@ -1,7 +1,6 @@
-from asyncio import timeout
-
 import allure
 from playwright.sync_api import expect
+
 
 @allure.title("Заполнение корзины")
 def test_fill_cart(page):
