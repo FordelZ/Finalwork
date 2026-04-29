@@ -17,6 +17,15 @@ def test_fill_cart(page):
         expect(add_to_cart_1).to_be_visible()
         expect(add_to_cart_1).to_be_enabled()
         add_to_cart_1.click()
+        print("1 add")
+
+        slider = page.locator('.wp-post-image[src*="pexels-natasha"]').nth(1)
+        slider.hover()
+        print("1 add")
+
+        next_button = page.locator('a.slick-next')
+        next_button.click()
+        print("1 add")
 
     with allure.step("3.Находим кнопку слайдера"):
         async def click_next_three_times():
@@ -28,3 +37,14 @@ def test_fill_cart(page):
                 await next_button.click()
                 await click_next_three_times()
                 print("Кликаю жестко")
+
+    with allure.step("4.Добавление пиццы 'Пепперони'"):
+
+        product2 = page.locator('img.wp-post-image[src*="pexels-cottonbro"]').first
+        expect(product2).to_be_visible(timeout=10000)
+        product2.hover()
+        print("1 add")
+        add_to_cart_2 = page.locator('.ajax_add_to_cart[data-product_id="417"]')
+        expect(add_to_cart_2).to_be_visible()
+        expect(add_to_cart_2).to_be_enabled()
+        add_to_cart_2.click()
