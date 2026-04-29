@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class TestsPizzeria:
     @allure.title("Регистрация нового пользователя")
-    def test_authorization(self, selenium):
+    def tests_authorization(self, selenium):
         account_username = "Fordel"
         expected_result = f"Привет, {account_username}"
 

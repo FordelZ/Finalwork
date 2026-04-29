@@ -1,9 +1,8 @@
 import re
 import allure
 from playwright.sync_api import expect
-from selenium.webdriver.common.devtools.v145.dom import scroll_into_view_if_needed
 
-from All_tests.tests.add_shopping_cart.fill_shopping_cart import test_fill_cart
+from All_tests.tests.add_shopping_cart.test_fill_shopping_cart import test_fill_cart
 
 
 @allure.title("Сценарий №1: Применение промокода GIVEMEHALYAVA (скидка 10%)")
