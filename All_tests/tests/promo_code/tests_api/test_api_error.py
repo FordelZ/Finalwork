@@ -1,21 +1,44 @@
-import re
 import allure
-from playwright.sync_api import expect
 
+from playwright.sync_api import expect
 from All_tests.tests.add_shopping_cart.test_fill_shopping_cart import test_fill_cart
 
 
-@allure.title("Сценарий №1: Применение промокода GIVEMEHALYAVA (скидка 10%)")
-def test_promo_code_discount_10percent(page):
+@allure.title("Сценарий №3: Применение промокода GIVEMEHALYAVA, перехват запроса")
+def test_promo_code_error_500(page):
     test_fill_cart(page)
     username_fixed = "fordel"
     password_fixed = "fordel"
     promo_code = "GIVEMEHALYAVA"
-    discount_percent = 10
 
     with allure.step('Переход к оформлению заказа'):
         make_order = page.locator("#menu-item-31").get_by_text("Оформление заказа")
         make_order.click()
+
+        code_place = page.locator(".showcoupon")
+        code_place.click()
+
+      #  page.route('**', lambda route: (
+       #     print(f"URL: {route.request.url}"),
+       #     print(f"Method: {route.request.method}"),
+       #     print(f"Headers: {list(route.request.headers.keys())}"),
+       #     route.continue_()
+      #  ))
+
+    with allure.step("Перехват запроса"):
+        page.route("**/?wc-ajax=apply_coupon", lambda route: route.fulfill(
+            status=500,
+            body="Internal Server Error"
+        ))
+
+    with allure.step("Добавляем купон на скидку"):
+
+        code_input = page.locator("#coupon_code")
+        code_input.fill(promo_code)
+
+        accept_code = page.locator('button[name="apply_coupon"]')
+        accept_code.click()
+        page.wait_for_timeout(2000)
 
     with allure.step("Авторизуемся с данными пользователя"):
         authorization = page.locator('a.showlogin[href="#"]')
@@ -30,16 +53,6 @@ def test_promo_code_discount_10percent(page):
         enter_profile = page.locator('button[name="login"]')
         enter_profile.click()
 
-    with allure.step("Добавляем купон на скидку"):
-        code_place = page.locator(".showcoupon")
-        code_place.click()
-
-        code_input = page.locator("#coupon_code")
-        code_input.fill(promo_code)
-
-        accept_code = page.locator('button[name="apply_coupon"]')
-        accept_code.click()
-
     with allure.step("Находим цену после скидки"):
         discount_locator = page.locator('bdi:has(span.woocommerce-Price-currencySymbol):nth-match(2)')
         expect(discount_locator).to_be_visible(timeout=10000)
@@ -50,7 +63,6 @@ def test_promo_code_discount_10percent(page):
         ten_percent = total_price * 0.1
         ten_percent_rounded = round(ten_percent, 2)
 
-        
     with allure.step("Находим конечную сумму заказа"):
         price_locator = page.locator('bdi:has(span.woocommerce-Price-currencySymbol):nth-match(1)')
         expect(price_locator).to_be_visible(timeout=10000)
@@ -76,4 +88,3 @@ def test_promo_code_discount_10percent(page):
 
         print(f" Вычисленные 10%: {ten_percent_rounded}")
         print(f" Третье число: {discount_value}")
-
