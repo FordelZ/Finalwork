@@ -40,7 +40,7 @@ def test_fill_cart(page):
 
     with allure.step("4.Добавление пиццы 'Пепперони'"):
 
-        product2 = page.locator('img.wp-post-image[src*="pexels-cottonbro"]').first
+        product2 = page.locator(...).first
         expect(product2).to_be_visible(timeout=10000)
         product2.hover()
         print("1 add")
