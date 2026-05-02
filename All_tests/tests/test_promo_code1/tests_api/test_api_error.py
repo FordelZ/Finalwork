@@ -1,4 +1,5 @@
 import allure
+import re
 
 from playwright.sync_api import expect
 from All_tests.tests.add_shopping_cart.test_fill_shopping_cart import test_fill_cart
@@ -47,7 +48,7 @@ def test_promo_code_error_500(page):
         enter_profile.click()
 
     with allure.step("Находим цену после скидки"):
-        discount_locator = page.locator('bdi:has(span.woocommerce-Price-currencySymbol):nth-match(2)')
+        discount_locator = page.locator('tr.order-total .woocommerce-Price-amount bdi')
         expect(discount_locator).to_be_visible(timeout=10000)
         total_price_text = discount_locator.text_content().strip()
         cleaned = re.sub(r'[^\d.,]', '', total_price_text)
@@ -57,7 +58,7 @@ def test_promo_code_error_500(page):
         ten_percent_rounded = round(ten_percent, 2)
 
     with allure.step("Находим конечную сумму заказа"):
-        price_locator = page.locator('bdi:has(span.woocommerce-Price-currencySymbol):nth-match(1)')
+        price_locator = page.locator('tr.cart-subtotal .woocommerce-Price-amount bdi')
         expect(price_locator).to_be_visible(timeout=10000)
         discount_text = price_locator.text_content().strip()
         cleaned_discount = re.sub(r'[^\d.,]', '', discount_text)
