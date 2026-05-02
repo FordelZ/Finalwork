@@ -77,7 +77,5 @@ def test_promo_code_discount_10percent(page):
         )
 
         print(f" Вычисленные 10%: {ten_percent_rounded}")
-        print(f" Третье число: {discount_value}")
-
-
-
+        print(f" Сумма без бонуса: {discount_value}")
+        print(f" Общая сумма: {total_price}")

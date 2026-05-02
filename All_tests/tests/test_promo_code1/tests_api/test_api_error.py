@@ -18,13 +18,6 @@ def test_promo_code_error_500(page):
         code_place = page.locator(".showcoupon")
         code_place.click()
 
-      #  page.route('**', lambda route: (
-       #     print(f"URL: {route.request.url}"),
-       #     print(f"Method: {route.request.method}"),
-       #     print(f"Headers: {list(route.request.headers.keys())}"),
-       #     route.continue_()
-      #  ))
-
     with allure.step("Перехват запроса"):
         page.route("**/?wc-ajax=apply_coupon", lambda route: route.fulfill(
             status=500,

@@ -4,8 +4,8 @@ from playwright.sync_api import expect
 from All_tests.tests.add_shopping_cart.test_fill_shopping_cart import test_fill_cart
 
 
-@allure.title("Сценарий №1: Применение промокода GIVEMEHALYAVA (скидка 10%)")
-def test_promo_code_discount_10percent(page):
+@allure.title("Полный заказ")
+def test_full_order_with_promo_code(page):
     test_fill_cart(page)
     username_fixed = "fordel"
     password_fixed = "fordel"
@@ -36,6 +36,17 @@ def test_promo_code_discount_10percent(page):
 
         enter_profile = page.locator('button[name="login"]')
         enter_profile.click()
+
+    with allure.step("Добавляем купон на скидку"):
+        code_place = page.locator(".showcoupon")
+        code_place.click()
+
+        code_input = page.locator("#coupon_code")
+        code_input.fill(promo_code)
+
+        accept_code = page.locator('button[name="apply_coupon"]')
+        accept_code.click()
+        page.wait_for_timeout(2000)
 
     with allure.step("Заполняем данные в деталях заказа"):
         order = page.locator('#billing_first_name')

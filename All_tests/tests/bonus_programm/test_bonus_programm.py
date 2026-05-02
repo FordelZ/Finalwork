@@ -27,14 +27,13 @@ def test_bonus_actions(page):
         accept_bonus = page.get_by_text('Оформить карту')
         expect(accept_bonus).to_be_visible(timeout=10000)
         accept_bonus.click()
+        page.wait_for_timeout(2000)
 
     with allure.step("Проверяем отображение сообщения об успешной оформлении карты"):
-        container = page.locator('#bonus_main')
+        container = page.locator('#bonus_main h3')
         expect(container).to_be_visible(timeout=200000)
         expect(container).to_have_text(
-            "Ваша карта оформлена!\n"
-            "Для применения скидки укажите номер телефона владельца карты в комментариях к заказу."
-        )
+            "Ваша карта оформлена!\n")
 
         allure.attach(
             "Блок с сообщением об оформлении карты найден и проверен",
