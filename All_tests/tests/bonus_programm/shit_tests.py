@@ -3,7 +3,7 @@ import allure
 from playwright.async_api import expect
 
 @allure.title("Заполнение корзины")
-async def test_fill_cart(page):
+async def test_shit(page):
     with allure.step("1. Переходим на главную страницу"):
         await page.goto("https://pizzeria.skillbox.cc/", wait_until="load")
 

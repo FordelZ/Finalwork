@@ -2,8 +2,8 @@ import allure
 import asyncio
 from playwright.sync_api import expect
 
-@allure.title("Заполнение корзины")
-def test_fill_cart(page):
+@allure.title("Заполнение корзины через скролл")
+def test_adding_pizzas_slider(page):
     with allure.step("1. Переходим на главную страницу"):
         page.goto("https://pizzeria.skillbox.cc/", wait_until="load")
 
