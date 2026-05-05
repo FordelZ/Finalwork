@@ -33,7 +33,7 @@ def tests_registration(page):
     with allure.step("Проверяем что выдало ошибку в поле Пароль"):
         error_message = page.get_by_role('alert')
         expect(error_message).to_be_visible(timeout=10000)
-        print("Ошибка ввода имени обнаружена")
+        print("Ошибка ввода Пароль обнаружена")
 
         error_text = error_message.text_content()
         error_message_text = error_text.strip()
