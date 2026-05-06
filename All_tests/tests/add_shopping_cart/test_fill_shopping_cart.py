@@ -36,7 +36,6 @@ def test_fill_cart(page):
         expect(add_to_cart_3).to_be_enabled()
         add_to_cart_3.click()
 
-
     with allure.step("3 Проверяем добавленные товары"):
         checking_order = page.locator('.cart-contents.wcmenucart-contents')
         checking_order.click()

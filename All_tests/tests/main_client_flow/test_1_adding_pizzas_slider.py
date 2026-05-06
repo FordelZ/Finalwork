@@ -2,6 +2,7 @@ import allure
 import asyncio
 from playwright.sync_api import expect
 
+
 @allure.title("Заполнение корзины через скролл")
 def test_adding_pizzas_slider(page):
     with allure.step("1. Переходим на главную страницу"):
@@ -29,7 +30,6 @@ def test_adding_pizzas_slider(page):
         next_button.click()
         print("4 add")
 
-
     with allure.step("4.Добавление пиццы 'Пепперони'"):
 
         product2 = page.locator('div.item-img:has(img[src*="pexels-cottonbro"])').nth(1)
@@ -44,5 +44,5 @@ def test_adding_pizzas_slider(page):
         print("6 add")
 
         allure.attach(
-            f"Два товара успешно добавлены после нажатия на слайдер"
+            "Два товара успешно добавлены после нажатия на слайдер"
         )

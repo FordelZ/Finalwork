@@ -7,7 +7,6 @@ def test_bonus_actions(page):
     test_name = "Sick1"
     test_phone = "89008007060"
 
-
     with allure.step("1. Переходим на страницу сайта "):
         page.goto("https://pizzeria.skillbox.cc/", wait_until="load")
         bonus = page.locator('#menu-item-363 a')
@@ -42,7 +41,3 @@ def test_bonus_actions(page):
         )
 
     print("Сообщение 'Ваша карта оформлена!' отображено")
-
-
-
-    #бесконечная загрузка результатов ответа

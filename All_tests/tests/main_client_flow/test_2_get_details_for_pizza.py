@@ -11,7 +11,7 @@ def test_scroll_and_add_pizza(page):
     with allure.step("1. Переходим на главную страницу"):
         page.goto("https://pizzeria.skillbox.cc/", wait_until="load")
 
-    with allure.step("2. Делаем скролл по меня и кликаем по пицце Пеперони" ):
+    with allure.step("2. Делаем скролл по меня и кликаем по пицце Пеперони"):
 
         product1 = page.locator('.wp-post-image[src*="pexels-natasha"]').nth(1)
         expect(product1).to_be_visible(timeout=10000)

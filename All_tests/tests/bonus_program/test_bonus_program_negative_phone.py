@@ -7,7 +7,6 @@ def test_bonus_actions_negative(page):
     test_name = "Sick1"
     test_phone = "890080070601"
 
-
     with allure.step("1. Переходим на страницу сайта "):
         page.goto("https://pizzeria.skillbox.cc/", wait_until="load")
         bonus = page.locator('#menu-item-363 a')
@@ -38,7 +37,7 @@ def test_bonus_actions_negative(page):
         error_message_text = error_text.strip()
 
         allure.attach(
-            f"Ошибка ввода Телефон обнаружена\n"
-            f"Необходимо заполнить поле - Телефон "
+            "Ошибка ввода Телефон обнаружена\n"
+            "Необходимо заполнить поле - Телефон "
         )
         print(error_message_text)

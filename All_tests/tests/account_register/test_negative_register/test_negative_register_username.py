@@ -9,7 +9,6 @@ def tests_registration(page):
     account_password = "1234"
     account_email = "fordel1@mail.ru"
 
-
     with allure.step('1. Переход на страницу сайта регистрации'):
         page.goto("https://pizzeria.skillbox.cc/register/")
 
@@ -39,7 +38,7 @@ def tests_registration(page):
         error_message_text = error_text.strip()
 
         allure.attach(
-            f"Ошибка ввода имени обнаружена\n"
-            f"Необходимо заполнить поле - Имя "
+            "Ошибка ввода имени обнаружена\n"
+            "Необходимо заполнить поле - Имя "
         )
         print(error_message_text)

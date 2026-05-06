@@ -10,7 +10,6 @@ class TestsPizzeria:
     @allure.title("Регистрация нового пользователя")
     def tests_authorization(self, selenium):
         account_username = "Fordel"
-        expected_result = f"Привет, {account_username}"
 
         with allure.step('Переход на страницу сайта'):
             selenium.get("http://pizzeria.skillbox.cc/")
@@ -25,13 +24,17 @@ class TestsPizzeria:
 
         with allure.step('Вводим в поле имя - Fordel'):
             username_input = wait.until(lambda d: d.find_element(By.NAME, 'username'))
-        username_input.send_keys(account_username)
+            username_input.send_keys(account_username)
 
         with allure.step('Вводит пароль'):
             password_input = wait.until(lambda d: d.find_element(By.NAME, 'password'))
-        password_input.send_keys("fordel")
+            password_input.send_keys("fordel")
 
-        with allure.step('Нажимает кнопку Войти'):authorization_button = wait.until(lambda d: d.find_element(By.XPATH,
-                                "/html/body/div[1]/div/div[2]/main/div/article/div/div/div/div/form/p[3]/button"))
-        authorization_button.click()
-
+        with allure.step('Нажимает кнопку Войти'):
+            authorization_button = wait.until(
+                lambda d: d.find_element(
+                    (By.XPATH,
+                     "/html/body/div[1]/div/div[2]/main/div/article/div/div/div/div/form/p[3]/button")
+                )
+            )
+            authorization_button.click()

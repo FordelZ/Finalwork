@@ -1,1 +1,1 @@
-from src.fixtures.system.browser import * #noqa
+from src.fixtures.system.browser import *

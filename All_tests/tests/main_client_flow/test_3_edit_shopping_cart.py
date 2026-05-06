@@ -11,7 +11,7 @@ def test_edit_shopping_cart(page):
 
     with allure.step("1. Добавляем несколько пицц через клик"):
         adding_one = page.locator(
-    'tr:has-text(\'Пицца "4 в 1"\'):has-text("Дополнительно: Сырный борт") .input-text.qty.text')
+            'tr:has-text(\'Пицца "4 в 1"\'):has-text("Дополнительно: Сырный борт") .input-text.qty.text')
         adding_one.hover()
         adding_one.click()
         page.keyboard.press("ArrowUp")
@@ -28,7 +28,5 @@ def test_edit_shopping_cart(page):
         # Внутри строки ищем кнопку удаления
         delete_one = product_row.get_by_role('link', name='Remove this item').nth(1)
         delete_one.click()
-
-
 
         print("Ура?")

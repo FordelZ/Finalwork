@@ -1,5 +1,4 @@
 import allure
-
 from playwright.sync_api import expect
 
 
@@ -7,7 +6,6 @@ from playwright.sync_api import expect
 def tests_registration(page):
     account_username = ""
     account_password = "fordel"
-
 
     with allure.step('1. Переход на страницу сайта авторизации'):
         page.goto("https://pizzeria.skillbox.cc/my-account/")
@@ -32,7 +30,7 @@ def tests_registration(page):
         error_message_text = error_text.strip()
 
         allure.attach(
-            f"Ошибка ввода Имя обнаружена\n"
-            f"Необходимо заполнить поле - Имя "
+            "Ошибка ввода Имя обнаружена\n"
+            "Необходимо заполнить поле - Имя "
         )
         print(error_message_text)

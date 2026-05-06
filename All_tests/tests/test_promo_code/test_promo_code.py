@@ -11,7 +11,6 @@ def test_promo_code_discount_10percent(page):
     username_fixed = "fordel"
     password_fixed = "fordel"
     promo_code = "GIVEMEHALYAVA"
-    discount_percent = 10
 
     with allure.step('Переход к оформлению заказа'):
         make_order = page.locator("#menu-item-31").get_by_text("Оформление заказа")
@@ -49,8 +48,6 @@ def test_promo_code_discount_10percent(page):
         normalized = cleaned.replace(',', '.')
         total_price = float(normalized)
 
-
-        
     with allure.step("Находим конечную сумму заказа"):
         price_locator = page.locator('tr.cart-subtotal .woocommerce-Price-amount bdi')
         expect(price_locator).to_be_visible(timeout=10000)
@@ -58,7 +55,7 @@ def test_promo_code_discount_10percent(page):
         cleaned_discount = re.sub(r'[^\d.,]', '', discount_text)
         normalized_discount = cleaned_discount.replace(',', '.')
         discount_value = float(normalized_discount)
-        ten_percent = discount_value * 0.1    #Считаем значение от 3 числа card-discount будет более правильно
+        ten_percent = discount_value * 0.1
         ten_percent_rounded = round(ten_percent, 2)
 
     with allure.step("Сравниваем вычисленные 10% с третьим числом"):
@@ -66,12 +63,12 @@ def test_promo_code_discount_10percent(page):
             f"Вычисленные 10% ({ten_percent_rounded}) не равны третьему числу на странице ({discount_value}). "
             f"Разница: {abs(ten_percent_rounded - discount_value)}"
         )
-#Найти значение dbi из карт sub_total
         allure.attach(
             f"Итоговая сумма: {total_price}\n"
             f"10% от суммы: {ten_percent_rounded}\n"
             f"Третье число на странице: {discount_value}\n"
-            f"Результат сравнения: {'✓ Успешно' if abs(ten_percent_rounded - discount_value) == total_price else '✗ Ошибка'}",
+            f"Результат сравнения: "
+            f"{'✓ Успешно' if abs(ten_percent_rounded - discount_value) == total_price else '✗ Ошибка'}",
             name="Результаты сравнения",
             attachment_type=allure.attachment_type.TEXT
         )

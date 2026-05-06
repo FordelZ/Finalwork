@@ -8,9 +8,6 @@ def test_redo_full_order_with_promo_code(page):
 
     test_full_order_with_promo_code(page)
     page.wait_for_timeout(2000)
-
-    username_fixed = "fordel"
-    password_fixed = "fordel"
     promo_code = "GIVEMEHALYAVA"
 
     with allure.step("Возвращаемся на главную страницу и добавляем товар ещё раз"):
@@ -56,7 +53,7 @@ def test_redo_full_order_with_promo_code(page):
                 name="Результат проверки",
                 attachment_type=allure.attachment_type.TEXT
             )
-            print ("Промокод успешно применён — но по сценарию это ошибка!")
+            print("Промокод успешно применён — но по сценарию это ошибка!")
         elif "Coupon already used" in text:
             print("Промокод уже использован — ожидаемое поведение")
             allure.attach(
